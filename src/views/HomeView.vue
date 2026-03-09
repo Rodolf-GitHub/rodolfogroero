@@ -1,12 +1,45 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const introVisible = ref(true)
+let observer: IntersectionObserver | null = null
 
 onMounted(() => {
   setTimeout(() => {
     introVisible.value = false
   }, 2400)
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement
+          el.classList.add('scroll-visible')
+
+          // stagger children with data-stagger
+          el.querySelectorAll('[data-stagger]').forEach((child, i) => {
+            ;(child as HTMLElement).style.transitionDelay = `${i * 0.08}s`
+            child.classList.add('scroll-visible')
+          })
+
+          observer?.unobserve(el)
+        }
+      })
+    },
+    { threshold: 0.15, rootMargin: '0px 0px -40px 0px' },
+  )
+
+  if (!prefersReduced) {
+    document.querySelectorAll('[data-scroll]').forEach((el) => observer!.observe(el))
+  } else {
+    document.querySelectorAll('[data-scroll]').forEach((el) => el.classList.add('scroll-visible'))
+  }
+})
+
+onUnmounted(() => {
+  observer?.disconnect()
 })
 
 const techStack = [
@@ -104,7 +137,7 @@ const techStack = [
     </div>
 
     <div class="relative mx-auto max-w-6xl px-6 py-10 sm:px-8 lg:px-10">
-      <div class="glow-border-wrap reveal-step-1 relative mb-14 rounded-3xl p-[2px]">
+      <div data-scroll="fade-up" class="glow-border-wrap relative mb-14 rounded-3xl p-[2px]">
         <header
           class="relative rounded-3xl bg-white/90 p-6 shadow-[0_20px_60px_-35px_var(--accent-200)] backdrop-blur md:p-10"
         >
@@ -174,9 +207,10 @@ const techStack = [
         </header>
       </div>
 
-      <section class="mb-10 grid gap-5 md:grid-cols-3">
+      <section data-scroll="fade-up" class="mb-10 grid gap-5 md:grid-cols-3">
         <article
-          class="reveal-step-2 rounded-2xl border border-[var(--bg-300)] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+          data-stagger
+          class="rounded-2xl border border-[var(--bg-300)] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
         >
           <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--primary-100)]">
             Anios experiencia
@@ -187,7 +221,8 @@ const techStack = [
           </p>
         </article>
         <article
-          class="reveal-step-2 rounded-2xl border border-[var(--bg-300)] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+          data-stagger
+          class="rounded-2xl border border-[var(--bg-300)] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
         >
           <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--primary-100)]">
             Entrega
@@ -198,7 +233,8 @@ const techStack = [
           </p>
         </article>
         <article
-          class="reveal-step-2 rounded-2xl border border-[var(--bg-300)] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+          data-stagger
+          class="rounded-2xl border border-[var(--bg-300)] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
         >
           <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--primary-100)]">
             Especialidad
@@ -211,7 +247,8 @@ const techStack = [
       </section>
 
       <section
-        class="reveal-step-3 mb-10 rounded-3xl border border-[var(--primary-200)]/40 bg-white p-6 shadow-sm md:p-8"
+        data-scroll="slide-right"
+        class="mb-10 rounded-3xl border border-[var(--primary-200)]/40 bg-white p-6 shadow-sm md:p-8"
       >
         <h2 class="text-2xl font-black text-[var(--accent-200)] md:text-3xl">
           Experiencia profesional
@@ -272,7 +309,8 @@ const techStack = [
 
       <section class="mb-10 grid gap-6 lg:grid-cols-[1.2fr_1fr]">
         <article
-          class="reveal-step-4 rounded-3xl border border-[var(--bg-300)] bg-white p-6 md:p-8"
+          data-scroll="slide-left"
+          class="rounded-3xl border border-[var(--bg-300)] bg-white p-6 md:p-8"
         >
           <h2 class="text-2xl font-black text-[var(--accent-200)] md:text-3xl">
             Proyectos publicos destacados
@@ -339,7 +377,8 @@ const techStack = [
         </article>
 
         <article
-          class="reveal-step-5 rounded-3xl border border-[var(--bg-300)] bg-white p-6 md:p-8"
+          data-scroll="slide-right"
+          class="rounded-3xl border border-[var(--bg-300)] bg-white p-6 md:p-8"
         >
           <h2 class="text-2xl font-black text-[var(--accent-200)]">Tecnologias</h2>
           <p class="mt-2 text-sm text-[var(--text-200)]">
@@ -372,7 +411,8 @@ const techStack = [
       </section>
 
       <section
-        class="reveal-step-6 mb-10 rounded-3xl border border-[var(--primary-200)]/40 bg-gradient-to-r from-[var(--primary-300)]/45 to-white p-6 md:p-8"
+        data-scroll="scale-in"
+        class="mb-10 rounded-3xl border border-[var(--primary-200)]/40 bg-gradient-to-r from-[var(--primary-300)]/45 to-white p-6 md:p-8"
       >
         <h2 class="text-2xl font-black text-[var(--accent-200)] md:text-3xl">
           Formacion y enfoque
@@ -385,7 +425,7 @@ const techStack = [
         </p>
       </section>
 
-      <footer class="reveal-step-6 pb-8 text-center text-sm text-[var(--text-200)]">
+      <footer data-scroll="blur-in" class="pb-8 text-center text-sm text-[var(--text-200)]">
         <div
           class="mx-auto mb-5 h-px w-24 bg-gradient-to-r from-transparent via-[var(--primary-200)] to-transparent"
         ></div>
@@ -546,35 +586,54 @@ const techStack = [
   }
 }
 
-/* ── REVEAL STEPS ── */
-.reveal-step-1,
-.reveal-step-2,
-.reveal-step-3,
-.reveal-step-4,
-.reveal-step-5,
-.reveal-step-6 {
+/* ── SCROLL ANIMATIONS ── */
+[data-scroll] {
   opacity: 0;
-  animation: fadeUp 0.75s ease-out forwards;
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.7s ease-out;
 }
 
-.reveal-step-2 {
-  animation-delay: 0.08s;
+[data-scroll='fade-up'] {
+  transform: translateY(40px);
 }
 
-.reveal-step-3 {
-  animation-delay: 0.14s;
+[data-scroll='slide-left'] {
+  transform: translateX(-50px);
 }
 
-.reveal-step-4 {
-  animation-delay: 0.2s;
+[data-scroll='slide-right'] {
+  transform: translateX(50px);
 }
 
-.reveal-step-5 {
-  animation-delay: 0.26s;
+[data-scroll='scale-in'] {
+  transform: scale(0.92);
 }
 
-.reveal-step-6 {
-  animation-delay: 0.32s;
+[data-scroll='blur-in'] {
+  transform: translateY(20px);
+  filter: blur(6px);
+}
+
+[data-scroll].scroll-visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+  filter: blur(0);
+}
+
+/* stagger children inside scroll sections */
+[data-stagger] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-stagger].scroll-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .floating-aura {
@@ -591,18 +650,6 @@ const techStack = [
 
 .whatsapp-float {
   animation: pulseSoft 2.2s ease-in-out infinite;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 @keyframes drift {
@@ -628,12 +675,14 @@ const techStack = [
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal-step-1,
-  .reveal-step-2,
-  .reveal-step-3,
-  .reveal-step-4,
-  .reveal-step-5,
-  .reveal-step-6,
+  [data-scroll],
+  [data-stagger] {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
   .floating-aura,
   .floating-aura-delayed,
   .floating-aura-slow,
