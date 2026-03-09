@@ -1,20 +1,85 @@
+<script setup lang="ts">
+const techStack = [
+  {
+    name: 'Vue.js',
+    site: 'https://vuejs.org',
+    icon: 'https://cdn.simpleicons.org/vuedotjs/42b883',
+  },
+  {
+    name: 'Nuxt',
+    site: 'https://nuxt.com',
+    icon: 'https://cdn.simpleicons.org/nuxt/00dc82',
+  },
+  {
+    name: 'React',
+    site: 'https://react.dev',
+    icon: 'https://cdn.simpleicons.org/react/61dafb',
+  },
+  {
+    name: 'Tailwind CSS',
+    site: 'https://tailwindcss.com',
+    icon: 'https://cdn.simpleicons.org/tailwindcss/06b6d4',
+  },
+  {
+    name: 'FastAPI',
+    site: 'https://fastapi.tiangolo.com',
+    icon: 'https://cdn.simpleicons.org/fastapi/009688',
+  },
+  {
+    name: 'Django',
+    site: 'https://www.djangoproject.com',
+    icon: 'https://cdn.simpleicons.org/django/092e20',
+  },
+  {
+    name: 'Node.js',
+    site: 'https://nodejs.org',
+    icon: 'https://cdn.simpleicons.org/nodedotjs/339933',
+  },
+  {
+    name: 'PostgreSQL',
+    site: 'https://www.postgresql.org',
+    icon: 'https://cdn.simpleicons.org/postgresql/4169e1',
+  },
+  {
+    name: 'Linux',
+    site: 'https://kernel.org',
+    icon: 'https://cdn.simpleicons.org/linux/fcc624',
+  },
+  {
+    name: 'Nginx',
+    site: 'https://nginx.org',
+    icon: 'https://cdn.simpleicons.org/nginx/009639',
+  },
+  {
+    name: 'Stripe',
+    site: 'https://stripe.com',
+    icon: 'https://cdn.simpleicons.org/stripe/635bff',
+  },
+  {
+    name: 'Git',
+    site: 'https://git-scm.com',
+    icon: 'https://cdn.simpleicons.org/git/f05032',
+  },
+]
+</script>
+
 <template>
   <main class="relative overflow-hidden bg-[var(--bg-200)] text-[var(--text-100)]">
     <div class="pointer-events-none absolute inset-0">
       <div
-        class="absolute -top-32 -left-24 h-96 w-96 rounded-full bg-[var(--primary-300)] blur-3xl opacity-70"
+        class="floating-aura absolute -top-32 -left-24 h-96 w-96 rounded-full bg-[var(--primary-300)] blur-3xl opacity-70"
       ></div>
       <div
-        class="absolute top-1/3 -right-20 h-80 w-80 rounded-full bg-[var(--primary-200)] blur-3xl opacity-35"
+        class="floating-aura-delayed absolute top-1/3 -right-20 h-80 w-80 rounded-full bg-[var(--primary-200)] blur-3xl opacity-35"
       ></div>
       <div
-        class="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-[var(--accent-100)] blur-3xl opacity-20"
+        class="floating-aura-slow absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-[var(--accent-100)] blur-3xl opacity-20"
       ></div>
     </div>
 
     <div class="relative mx-auto max-w-6xl px-6 py-10 sm:px-8 lg:px-10">
       <header
-        class="mb-14 rounded-3xl border border-[var(--primary-200)]/35 bg-white/85 p-6 shadow-[0_20px_60px_-35px_var(--accent-200)] backdrop-blur md:p-10"
+        class="reveal-step-1 mb-14 rounded-3xl border border-[var(--primary-200)]/35 bg-white/85 p-6 shadow-[0_20px_60px_-35px_var(--accent-200)] backdrop-blur md:p-10"
       >
         <div class="grid gap-8 md:grid-cols-[1.5fr_1fr] md:items-center">
           <div>
@@ -36,6 +101,12 @@
               completas de punta a punta: frontend, backend, bases de datos, despliegue y
               optimizacion para negocio. He liderado equipos, tomado decisiones de arquitectura e
               integrado IA en proyectos reales en produccion.
+            </p>
+            <p
+              class="mt-4 max-w-2xl rounded-xl border border-[var(--primary-200)]/40 bg-[var(--primary-300)]/35 px-4 py-3 text-sm font-semibold leading-relaxed text-[var(--accent-200)]"
+            >
+              Capaz de crear cualquier aplicacion a medida: desde la captura de requerimientos hasta
+              el despliegue, configuracion de dominios, puesta en produccion y optimizacion SEO.
             </p>
             <div class="mt-7 flex flex-wrap gap-3">
               <a
@@ -75,7 +146,9 @@
       </header>
 
       <section class="mb-10 grid gap-5 md:grid-cols-3">
-        <article class="rounded-2xl border border-[var(--bg-300)] bg-white p-5 shadow-sm">
+        <article
+          class="reveal-step-2 rounded-2xl border border-[var(--bg-300)] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+        >
           <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--primary-100)]">
             Anios experiencia
           </p>
@@ -84,7 +157,9 @@
             Construyendo productos y sistemas reales en produccion.
           </p>
         </article>
-        <article class="rounded-2xl border border-[var(--bg-300)] bg-white p-5 shadow-sm">
+        <article
+          class="reveal-step-2 rounded-2xl border border-[var(--bg-300)] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+        >
           <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--primary-100)]">
             Entrega
           </p>
@@ -93,7 +168,9 @@
             Desarrollo rapido sin comprometer estabilidad ni calidad.
           </p>
         </article>
-        <article class="rounded-2xl border border-[var(--bg-300)] bg-white p-5 shadow-sm">
+        <article
+          class="reveal-step-2 rounded-2xl border border-[var(--bg-300)] bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+        >
           <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--primary-100)]">
             Especialidad
           </p>
@@ -105,7 +182,7 @@
       </section>
 
       <section
-        class="mb-10 rounded-3xl border border-[var(--primary-200)]/40 bg-white p-6 shadow-sm md:p-8"
+        class="reveal-step-3 mb-10 rounded-3xl border border-[var(--primary-200)]/40 bg-white p-6 shadow-sm md:p-8"
       >
         <h2 class="text-2xl font-black text-[var(--accent-200)] md:text-3xl">
           Experiencia profesional
@@ -132,7 +209,9 @@
       </section>
 
       <section class="mb-10 grid gap-6 lg:grid-cols-[1.2fr_1fr]">
-        <article class="rounded-3xl border border-[var(--bg-300)] bg-white p-6 md:p-8">
+        <article
+          class="reveal-step-4 rounded-3xl border border-[var(--bg-300)] bg-white p-6 md:p-8"
+        >
           <h2 class="text-2xl font-black text-[var(--accent-200)] md:text-3xl">
             Proyectos publicos destacados
           </h2>
@@ -164,7 +243,7 @@
                 refrigeracionroberto.com
               </p>
               <p class="mt-1 text-sm text-[var(--text-200)]">
-                Sitio comercial optimizado para conversion y presencia online.
+                Taller de refrigeracion y aire acondicionado con enfoque comercial y SEO local.
               </p>
             </a>
             <a
@@ -185,63 +264,41 @@
           </div>
         </article>
 
-        <article class="rounded-3xl border border-[var(--bg-300)] bg-white p-6 md:p-8">
+        <article
+          class="reveal-step-5 rounded-3xl border border-[var(--bg-300)] bg-white p-6 md:p-8"
+        >
           <h2 class="text-2xl font-black text-[var(--accent-200)]">Tecnologias</h2>
-          <div class="mt-5 grid grid-cols-2 gap-3 text-sm">
-            <span
-              class="rounded-xl bg-[var(--bg-200)] px-3 py-2 font-semibold text-[var(--text-100)]"
-              >Vue.js</span
+          <p class="mt-2 text-sm text-[var(--text-200)]">
+            Cada icono te lleva al sitio oficial de la tecnologia.
+          </p>
+          <div class="mt-5 grid grid-cols-1 gap-3 text-sm sm:grid-cols-2">
+            <a
+              v-for="tech in techStack"
+              :key="tech.name"
+              :href="tech.site"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-center gap-3 rounded-xl border border-[var(--primary-200)]/30 bg-[var(--bg-200)] px-3 py-2 font-semibold text-[var(--text-100)] transition duration-300 hover:-translate-y-0.5 hover:border-[var(--primary-100)] hover:bg-white"
             >
-            <span
-              class="rounded-xl bg-[var(--bg-200)] px-3 py-2 font-semibold text-[var(--text-100)]"
-              >Nuxt</span
-            >
-            <span
-              class="rounded-xl bg-[var(--bg-200)] px-3 py-2 font-semibold text-[var(--text-100)]"
-              >React</span
-            >
-            <span
-              class="rounded-xl bg-[var(--bg-200)] px-3 py-2 font-semibold text-[var(--text-100)]"
-              >Tailwind CSS</span
-            >
-            <span
-              class="rounded-xl bg-[var(--bg-200)] px-3 py-2 font-semibold text-[var(--text-100)]"
-              >FastAPI</span
-            >
-            <span
-              class="rounded-xl bg-[var(--bg-200)] px-3 py-2 font-semibold text-[var(--text-100)]"
-              >Django</span
-            >
-            <span
-              class="rounded-xl bg-[var(--bg-200)] px-3 py-2 font-semibold text-[var(--text-100)]"
-              >Node.js</span
-            >
-            <span
-              class="rounded-xl bg-[var(--bg-200)] px-3 py-2 font-semibold text-[var(--text-100)]"
-              >PostgreSQL</span
-            >
-            <span
-              class="rounded-xl bg-[var(--bg-200)] px-3 py-2 font-semibold text-[var(--text-100)]"
-              >Linux & VPS</span
-            >
-            <span
-              class="rounded-xl bg-[var(--bg-200)] px-3 py-2 font-semibold text-[var(--text-100)]"
-              >Nginx</span
-            >
-            <span
-              class="rounded-xl bg-[var(--bg-200)] px-3 py-2 font-semibold text-[var(--text-100)]"
-              >Stripe</span
-            >
-            <span
-              class="rounded-xl bg-[var(--bg-200)] px-3 py-2 font-semibold text-[var(--text-100)]"
-              >SEO tecnico</span
-            >
+              <img
+                :src="tech.icon"
+                :alt="`Icono oficial de ${tech.name}`"
+                class="h-5 w-5"
+                loading="lazy"
+              />
+              <span>{{ tech.name }}</span>
+              <span
+                class="ml-auto text-xs text-[var(--primary-100)] opacity-0 transition group-hover:opacity-100"
+              >
+                Oficial
+              </span>
+            </a>
           </div>
         </article>
       </section>
 
       <section
-        class="mb-10 rounded-3xl border border-[var(--primary-200)]/40 bg-gradient-to-r from-[var(--primary-300)]/45 to-white p-6 md:p-8"
+        class="reveal-step-6 mb-10 rounded-3xl border border-[var(--primary-200)]/40 bg-gradient-to-r from-[var(--primary-300)]/45 to-white p-6 md:p-8"
       >
         <h2 class="text-2xl font-black text-[var(--accent-200)] md:text-3xl">
           Formacion y enfoque
@@ -254,10 +311,125 @@
         </p>
       </section>
 
-      <footer class="pb-8 text-center text-sm text-[var(--text-200)]">
+      <footer class="reveal-step-6 pb-8 text-center text-sm text-[var(--text-200)]">
         <p>Disponible para proyectos freelance y colaboraciones remotas.</p>
         <p class="mt-1 font-semibold text-[var(--primary-100)]">GitHub: github.com/Rodolf-GitHub</p>
       </footer>
     </div>
+
+    <a
+      href="https://wa.me/59891854199?text=Hola%20Rodolfo%2C%20vi%20tu%20portafolio%20y%20quiero%20consultarte%20por%20un%20proyecto."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Contactar por WhatsApp"
+      class="whatsapp-float fixed right-5 bottom-5 z-50 inline-flex h-14 w-14 items-center justify-center gap-0 rounded-full bg-[#25D366] p-0 text-sm font-bold text-white shadow-2xl transition hover:scale-105 hover:bg-[#1ea952] sm:right-8 sm:bottom-8 sm:h-auto sm:w-auto sm:gap-2 sm:px-4 sm:py-3"
+    >
+      <img
+        src="https://cdn.simpleicons.org/whatsapp/ffffff"
+        alt="WhatsApp"
+        class="h-5 w-5"
+        loading="lazy"
+      />
+      <span class="hidden sm:inline">WhatsApp</span>
+    </a>
   </main>
 </template>
+
+<style scoped>
+.reveal-step-1,
+.reveal-step-2,
+.reveal-step-3,
+.reveal-step-4,
+.reveal-step-5,
+.reveal-step-6 {
+  opacity: 0;
+  animation: fadeUp 0.75s ease-out forwards;
+}
+
+.reveal-step-2 {
+  animation-delay: 0.08s;
+}
+
+.reveal-step-3 {
+  animation-delay: 0.14s;
+}
+
+.reveal-step-4 {
+  animation-delay: 0.2s;
+}
+
+.reveal-step-5 {
+  animation-delay: 0.26s;
+}
+
+.reveal-step-6 {
+  animation-delay: 0.32s;
+}
+
+.floating-aura {
+  animation: drift 12s ease-in-out infinite;
+}
+
+.floating-aura-delayed {
+  animation: drift 15s ease-in-out infinite reverse;
+}
+
+.floating-aura-slow {
+  animation: drift 18s ease-in-out infinite;
+}
+
+.whatsapp-float {
+  animation: pulseSoft 2.2s ease-in-out infinite;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -12px, 0) scale(1.03);
+  }
+}
+
+@keyframes pulseSoft {
+  0%,
+  100% {
+    box-shadow: 0 10px 30px -14px rgba(37, 211, 102, 0.85);
+  }
+
+  50% {
+    box-shadow: 0 14px 36px -12px rgba(37, 211, 102, 0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-step-1,
+  .reveal-step-2,
+  .reveal-step-3,
+  .reveal-step-4,
+  .reveal-step-5,
+  .reveal-step-6,
+  .floating-aura,
+  .floating-aura-delayed,
+  .floating-aura-slow,
+  .whatsapp-float {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
